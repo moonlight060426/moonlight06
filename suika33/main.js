@@ -1,3 +1,5 @@
+import { FRUITS } from "/suika33/fruit.js";
+
 var Engine=Matter.Engine,
     Render=Matter.Render,
     Runner=Matter.Runner,
@@ -48,3 +50,23 @@ World.add(world, [leftWall,rightWall,ground,topLine]);
 
 Render.run(render);
 Runner.run(engine);
+
+// 과일 떨어지는 함수 만들기
+function addFruit () {
+    // 과일 index 저장
+    const index = 0;
+
+    const fruit = FRUITS[index];
+
+    const body = Bodies.circle(300, 50, fruit.radius, {
+        render: {
+            sprite : { texture : `${fruit.name}.png`}
+                    // texture : fruit.name + 'png'; }
+
+        }
+    });
+
+    World.add(world, body);
+}
+
+addFruit();
